@@ -11,10 +11,12 @@ body {
   display: block;
   text-align: right;
 }
+
 .header img {
   width: 100%;
 }
-.header .more_inf {
+
+.header .more-info {
   font-family: fantasy, cursive;
 }
 
