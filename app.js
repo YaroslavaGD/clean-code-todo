@@ -53,7 +53,7 @@ const editTask = function () {
   const label = taskListItem.querySelector('label');
   const editButton = taskListItem.querySelector('.edit');
 
-  const isEditMode = taskListItem.classList.contains('editMode');
+  const isEditMode = taskListItem.classList.contains('edit-mode');
 
   if (isEditMode) {
     label.innerText = editInput.value;
@@ -63,7 +63,7 @@ const editTask = function () {
     editButton.innerText = 'Save';
   }
 
-  taskListItem.classList.toggle('editMode');
+  taskListItem.classList.toggle('edit-mode');
 };
 
 const deleteTask = function () {
