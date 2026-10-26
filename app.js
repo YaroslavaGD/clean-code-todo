@@ -4,7 +4,7 @@ const incompleteList = document.getElementById('incompleteTasks');
 const completedList = document.getElementById('completed-tasks');
 
 const createNewTaskElement = function (taskString) {
-  const listItem = document.createElement('li');
+  const taskListItem = document.createElement('li');
 
   const checkBox = document.createElement('input');
   const label = document.createElement('label');
@@ -28,58 +28,58 @@ const createNewTaskElement = function (taskString) {
   deleteButtonImg.src = './remove.svg';
   deleteButton.appendChild(deleteButtonImg);
 
-  listItem.appendChild(checkBox);
-  listItem.appendChild(label);
-  listItem.appendChild(editInput);
-  listItem.appendChild(editButton);
-  listItem.appendChild(deleteButton);
-  return listItem;
+  taskListItem.appendChild(checkBox);
+  taskListItem.appendChild(label);
+  taskListItem.appendChild(editInput);
+  taskListItem.appendChild(editButton);
+  taskListItem.appendChild(deleteButton);
+  return taskListItem;
 };
 
 const addTask = function () {
   if (!taskInput.value) return;
-  const listItem = createNewTaskElement(taskInput.value);
+  const taskListItem = createNewTaskElement(taskInput.value);
 
-  incompleteList.appendChild(listItem);
-  bindTaskEvents(listItem);
+  incompleteList.appendChild(taskListItem);
+  bindTaskEvents(taskListItem);
 
   taskInput.value = '';
 };
 
 const editTask = function () {
-  const listItem = this.parentNode;
+  const taskListItem = this.parentNode;
 
-  const editInput = listItem.querySelector('input[type=text]');
-  const label = listItem.querySelector('label');
-  const editBtn = listItem.querySelector('.edit');
-  const containsClass = listItem.classList.contains('editMode');
+  const editInput = taskListItem.querySelector('input[type=text]');
+  const label = taskListItem.querySelector('label');
+  const editButton = taskListItem.querySelector('.edit');
+  const containsClass = taskListItem.classList.contains('editMode');
 
   if (containsClass) {
     label.innerText = editInput.value;
-    editBtn.innerText = 'Edit';
+    editButton.innerText = 'Edit';
   } else {
     editInput.value = label.innerText;
-    editBtn.innerText = 'Save';
+    editButton.innerText = 'Save';
   }
 
-  listItem.classList.toggle('editMode');
+  taskListItem.classList.toggle('editMode');
 };
 
 const deleteTask = function () {
-  const listItem = this.parentNode;
-  const ul = listItem.parentNode;
+  const taskListItem = this.parentNode;
+  const ul = taskListItem.parentNode;
 
-  ul.removeChild(listItem);
+  ul.removeChild(taskListItem);
 };
 
 const moveTaskToOtherList = function () {
-  const listItem = this.parentNode;
-  const isCompleted = completedList.contains(listItem);
+  const taskListItem = this.parentNode;
+  const isCompleted = completedList.contains(taskListItem);
 
   if (isCompleted) {
-    incompleteList.appendChild(listItem);
+    incompleteList.appendChild(taskListItem);
   } else {
-    completedList.appendChild(listItem);
+    completedList.appendChild(taskListItem);
   }
 };
 
@@ -97,8 +97,8 @@ const bindTaskEvents = function (taskListItem) {
 };
 
 const bindTaskListEvents = function (taskList) {
-  for (const taskItem of taskList.children) {
-    bindTaskEvents(taskItem);
+  for (const taskListItem of taskList.children) {
+    bindTaskEvents(taskListItem);
   }
 };
 
