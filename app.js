@@ -68,9 +68,9 @@ const editTask = function () {
 
 const deleteTask = function () {
   const taskListItem = this.parentNode;
-  const ul = taskListItem.parentNode;
+  const taskList = taskListItem.parentNode;
 
-  ul.removeChild(taskListItem);
+  taskList.removeChild(taskListItem);
 };
 
 const moveTaskToOtherList = function () {
