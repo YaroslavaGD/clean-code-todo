@@ -1,7 +1,7 @@
 const taskInput = document.getElementById('new-task');
 const addButton = document.getElementsByTagName('button')[0];
-const incompleteTaskHolder = document.getElementById('incompleteTasks');
-const completedTasksHolder = document.getElementById('completed-tasks');
+const incompleteList = document.getElementById('incompleteTasks');
+const completedList = document.getElementById('completed-tasks');
 
 const createNewTaskElement = function (taskString) {
   const listItem = document.createElement('li');
@@ -40,7 +40,7 @@ const addTask = function () {
   if (!taskInput.value) return;
   const listItem = createNewTaskElement(taskInput.value);
 
-  incompleteTaskHolder.appendChild(listItem);
+  incompleteList.appendChild(listItem);
   bindTaskEvents(listItem);
 
   taskInput.value = '';
@@ -74,12 +74,12 @@ const deleteTask = function () {
 
 const moveTaskToOtherList = function () {
   const listItem = this.parentNode;
-  const isCompleted = completedTasksHolder.contains(listItem);
+  const isCompleted = completedList.contains(listItem);
 
   if (isCompleted) {
-    incompleteTaskHolder.appendChild(listItem);
+    incompleteList.appendChild(listItem);
   } else {
-    completedTasksHolder.appendChild(listItem);
+    completedList.appendChild(listItem);
   }
 };
 
@@ -100,4 +100,4 @@ const initTaskEvents = function (...taskLists) {
   taskLists.forEach((list) => Array.from(list.children).forEach(bindTaskEvents));
 };
 
-initTaskEvents(incompleteTaskHolder, completedTasksHolder);
+initTaskEvents(incompleteList, completedList);
