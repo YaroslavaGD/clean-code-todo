@@ -96,8 +96,11 @@ const bindTaskEvents = function (taskListItem) {
   checkBox.onchange = moveTaskToOtherList;
 };
 
-const initTaskEvents = function (...taskLists) {
-  taskLists.forEach((list) => Array.from(list.children).forEach(bindTaskEvents));
+const bindTaskListEvents = function (taskList) {
+  for (const taskItem of taskList.children) {
+    bindTaskEvents(taskItem);
+  }
 };
 
-initTaskEvents(incompleteList, completedList);
+bindTaskListEvents(incompleteList);
+bindTaskListEvents(completedList);
